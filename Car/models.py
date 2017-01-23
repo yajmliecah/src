@@ -43,7 +43,7 @@ class Spec(models.Model):
 
 
 	def save(self, *args, **kwargs):
-		self.date_submitted = datetime.datetime.utcnow().replace(tzinfo=utcx)
+		self.date_submitted = datetime.datetime.utcnow().replace(tzinfo=utc)
 		super(Spec, self).save(args, kwargs)
 
 

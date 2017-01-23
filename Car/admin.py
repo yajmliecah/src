@@ -12,7 +12,7 @@ class BrandAdmin(admin.ModelAdmin):
 
 
 class SpecAdmin(admin.ModelAdmin):
-	pass
+	prepopulated_fields = {'slug': ('name',)}
 
 admin.site.register(Condition, ConditionAdmin)
 admin.site.register(Brand, BrandAdmin)
