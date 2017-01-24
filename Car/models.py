@@ -21,12 +21,10 @@ class Spec(models.Model):
         ('MOTORCYCLE', 'MotorCycle'),
         ('VEHICLE', 'Vehicle')
 	)
-	
-	TRANS = (
-		('AUTO', 'Automatic'),
-		('MAN', 'Manual')
-	)
-    
+    TRANS = (
+        ('AUTOMATIC', 'Automatic'),
+        ('MANUAL', 'Manual')
+    )
     name = models.CharField(max_length=100, unique=True, verbose_name=_("name"))
     slug = models.SlugField(unique=True, null=True)
     brand = models.ForeignKey(Brand, verbose_name=_("brand"), related_name='specs')
@@ -35,19 +33,18 @@ class Spec(models.Model):
     date_submitted = models.DateTimeField(auto_now_add=True, verbose_name=_("date submitted"))
     price = models.DecimalField(max_digits=9, decimal_places=2)
     details = models.TextField(blank=True, verbose_name=_("details"), help_text=_("Enter car details"))
-	location = models.CharField(verbose_name=_("locations"))
-	transmission =models.CharField(max_length=100, choices=TRANS, verbose_name=_("transmission"))
-	fuel = models.CharField(max_length=100)
-	seller_type =models.CharField(max_length=100)
-	build =models.DateField()
-	mileage = models.CharField(max_length=100)
-	color_family = models.CharField(max_length=100)
-	lifestyle =models.CharField(max_length=100)
-	
-	
-	class Meta:
-		verbose_name = _("Spec")
-		verbose_name_plural = _("Specs")
+    location = models.CharField(max_length=100, verbose_name=_("locations"))
+    transmission =models.CharField(max_length=100, choices=TRANS, verbose_name=_("transmission"))
+    fuel = models.CharField(max_length=100)
+    seller_type =models.CharField(max_length=100)
+    build =models.DateField()
+    mileage = models.CharField(max_length=100)
+    color_family = models.CharField(max_length=100)
+    lifestyle =models.CharField(max_length=100)
+    
+    class Meta:
+        verbose_name = _("Spec")
+        verbose_name_plural = _("Specs")
         ordering = ["-id"]
 
     def __str__(self):
