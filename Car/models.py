@@ -6,45 +6,49 @@ import datetime
 
 
 class Brand(models.Model):
-	name = models.CharField(max_length=50, verbose_name=_("name"))
-	logo = models.ImageField(null=True)
-	
+    name = models.CharField(max_length=50, verbose_name=_("name"))
+    logo = models.ImageField(null=True)
+    
 
 class Condition(models.Model):
-	new = models.BooleanField(default=False)
-	used = models.BooleanField(default=False)
+    new = models.BooleanField(default=False)
+    used = models.BooleanField(default=False)
 
 
 class Spec(models.Model):
-	TYPES = (
-		('CAR', 'Car'),
-		('MOTORCYCLE', 'MotorCycle'),
-		('VEHICLE', 'Vehicle'),
-		)
-	name = models.CharField(max_length=100, unique=True, verbose_name=_("name"))
-	slug = models.SlugField(unique=True, null=True)
-	brand = models.ForeignKey(Brand, verbose_name=_("brand"), related_name='specs')
-	condition = models.ForeignKey(Condition, related_name='specs')
-	types = models.CharField(max_length=50, choices=TYPES, verbose_name=_("type"))
-	date_submitted = models.DateTimeField(auto_now_add=True, verbose_name=_("date submitted"))
-	price = models.DecimalField(max_digits=9, decimal_places=2)
-	details = models.TextField(blank=True, verbose_name=_("details"), help_text=_("Enter car details"))		
-
+    TYPES = (
+        ('CAR', 'Car'),
+        ('MOTORCYCLE', 'MotorCycle'),
+        ('VEHICLE', 'Vehicle'),
+        )
+	TRANSMISSION = (
+		('AUTO', 'Automatic'),
+		('MAN', 'Manual'),
+	)
+    name = models.CharField(max_length=100, unique=True, verbose_name=_("name"))
+    slug = models.SlugField(unique=True, null=True)
+    brand = models.ForeignKey(Brand, verbose_name=_("brand"), related_name='specs')
+    condition = models.ForeignKey(Condition, related_name='specs')
+    types = models.CharField(max_length=50, choices=TYPES, verbose_name=_("type"))
+    date_submitted = models.DateTimeField(auto_now_add=True, verbose_name=_("date submitted"))
+    price = models.DecimalField(max_digits=9, decimal_places=2)
+    details = models.TextField(blank=True, verbose_name=_("details"), help_text=_("Enter car details"))
+	location = models.CharField(verbose_name=_("locations"))
+	transmission =models.CharField(max_length=100, choices=TRANSMISSION, verbose_name=_("transmission"))
+	
 	objects = models.Manager()
 
-	class Meta:
-		verbose_name = _("Spec")
-		verbose_name_plural = _("Specs")
-		ordering = ["-id"]
+    class Meta:
+        verbose_name = _("Spec")
+        verbose_name_plural = _("Specs")
+        ordering = ["-id"]
 
+    def __str__(self):
+        return _("Spec %s") % self.name
 
-	def __unicode__(self):
-		return _("Spec %s") % self.name
-
-
-	def save(self, *args, **kwargs):
-		self.date_submitted = datetime.datetime.utcnow().replace(tzinfo=utc)
-		super(Spec, self).save(args, kwargs)
+    def save(self, *args, **kwargs):
+        self.date_submitted = datetime.datetime.utcnow().replace(tzinfo=utc)
+        super(Spec, self).save(args, kwargs)
 
 
 
