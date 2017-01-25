@@ -1,19 +1,14 @@
 from django.contrib import admin
 
-from Car.models import Condition, Brand, Spec
-
-
-class ConditionAdmin(admin.ModelAdmin):
-	exclude = ('old', 'used')
+from Car.models import Brand, Spec
 
 
 class BrandAdmin(admin.ModelAdmin):
-	fields = ('name',)
+    fields = ('name',)
 
 
 class SpecAdmin(admin.ModelAdmin):
-	prepopulated_fields = {'slug': ('name',)}
+    prepopulated_fields = {'slug': ('name',)}
 
-admin.site.register(Condition, ConditionAdmin)
 admin.site.register(Brand, BrandAdmin)
 admin.site.register(Spec, SpecAdmin)
