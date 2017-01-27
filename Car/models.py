@@ -6,8 +6,8 @@ from datetime import datetime
 
 class Brand(models.Model):
     name = models.CharField(max_length=50, verbose_name=_("name"))
-    logo = models.ImageField(null=True)
-    description = models.TextField(blank=True)
+    logo = models.ImageField(verbose_name=_("Logo"))
+    description = models.TextField(verbose_name=_("Description"))
         
     def __str__(self):
         return _("Brand %s") % self.name
@@ -44,7 +44,6 @@ class Spec(models.Model):
     name = models.CharField(max_length=100, unique=True, verbose_name=_("name"))
     slug = models.SlugField(unique=True, null=True)
     brand = models.ForeignKey(Brand, verbose_name=_("brand"), related_name='specs')
-    build = models.DateTimeField(null=True, blank=True, verbose_name=_("date was built"))
     condition = models.CharField(max_length=100, choices=CONDITION)
     category = models.CharField(max_length=50, choices=CATEGORY, verbose_name=_("category"), default='')
     price = models.DecimalField(max_digits=9, decimal_places=2)
@@ -63,10 +62,10 @@ class Spec(models.Model):
         ordering = ["-id"]
 
     def __str__(self):
-        return _("Spec %s") % self.name
-    
-    def was_built(self):
-        return self.build.date() == datetime.date.today()
+        return str(self.name)
+        
+#    def was_built(self):
+#       return self.build.date() == datetime.date.today()
         
         
 

@@ -6,12 +6,12 @@ from .models import Spec
 
 
 def index(request):
-    return render(request, "index.html", {})
+    return render(request, "car/index.html", {})
 
     
 def car_list(request):
     cars = Spec.objects.all()
-    return render(request, "car_list.html", {'cars': cars})
+    return render(request, "car/car_list.html", {'cars': cars})
 
 
 def car_detail(request, id):
