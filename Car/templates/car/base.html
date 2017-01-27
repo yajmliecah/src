@@ -1,4 +1,3 @@
-{% load url from future %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -31,7 +30,6 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
      -->
-     {% if not debug %}{% include "analytics.html" %}{% endif %}
   </head>
 
   <body>
@@ -82,13 +80,13 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>{{user.first_name}} <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="{% url 'accounts:overview' %}"><i class="icon-briefcase"></i>My Account</a></li>
-                <li><a href="{% url 'auth_logout' %}"><i class="icon-off"></i>Sign out</a></li>
+                <li><a href=""><i class="icon-briefcase"></i>My Account</a></li>
+                <li><a href=""><i class="icon-off"></i>Sign out</a></li>
                 {% if user.is_staff %}
                 <li class="divider"></li>
                 <li class="nav-header">Administration</li>
-                <li><a href="{% url 'admin:index' %}">Site Administration</a></li>
-                <li><a href="{% url 'admin:app_list' 'accounts' %}">Accounts</a></li>
+                <li><a href="">Site Administration</a></li>
+                <li><a href="{">Accounts</a></li>
                 {% endif %}
               </ul>
             </li>
