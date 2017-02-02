@@ -6,6 +6,5 @@ app_name = 'Car'
 
 urlpatterns = [
     url(r'^$', views.index),
-    url(r'^$car/', views.car_list, name='car_list'),
-
+    url(r'^cars/(?P<list_id>[0-9]+)/$', views.car_detail, name='car_detail'),
 ]

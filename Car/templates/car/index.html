@@ -1,1 +1,12 @@
-{% extends 'car/base.html' %}
+{% block content %}
+    {% if list %}
+        <ul>
+            <li><a href="">Car</a></li>
+            <li><a href="">MotorCycle</a></li>
+            <li><a href="">Vehicle</a></li>
+        </ul>
+    {% else %}
+            <p>No cars as of now</p>
+    {% endif %}
+
+{% endblock %}
