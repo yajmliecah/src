@@ -26,5 +26,5 @@ def car_detail(request, list_id):
 
 
 def cars(request, car_list):
-    car = Spec.objects.get()
-    
+    car = Spec.objects.filter(car_list='Car')
+    return render(request, "car/cars.html", {'car': car})
