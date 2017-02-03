@@ -1,6 +1,10 @@
+<h1>Cars</h1>
 {% block content %}
 <h2>{{ car.name }}</h2>
-{% for list in list %}
+    <ul>
+    {% for list in list_id %}
+        <li>{{ car.name }}</li>
 
-{% endfor %}
+    </ul>
+    {% endfor %}
 {% endblock %}
