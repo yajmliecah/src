@@ -41,7 +41,7 @@ class Spec(models.Model):
         ('LUXURY', 'Luxury'),
         ('OFFROAD', 'Offroad')
     )
-    name = models.CharField(max_length=100, unique=True, verbose_name=_("name"))
+    name = models.CharField(max_length=100, unique=True, primary_key=True, verbose_name=_("name"))
     slug = models.SlugField(unique=True, null=True)
     brand = models.ForeignKey(Brand, verbose_name=_("brand"), related_name='specs')
     condition = models.CharField(max_length=100, choices=CONDITION)
@@ -59,8 +59,7 @@ class Spec(models.Model):
     class Meta:
         verbose_name = _("Spec")
         verbose_name_plural = _("Specs")
-        ordering = ["-id"]
-
+        
     def __unicode__(self):
         return self.name
         

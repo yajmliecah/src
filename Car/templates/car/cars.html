@@ -2,8 +2,8 @@
 
 {% block content %}
     <ul>
-    {% for cars in cars %}
-        <li><a href="{% url 'car_detail' %}">{{ cars.name }}</a></li>
+    {% for list in list_id %}
+        <li>{{ list.name }}</li>
     {% endfor %}
     </ul>
 {% endblock %}

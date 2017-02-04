@@ -16,13 +16,12 @@ def car_list(request):
     return render(request, "car/car_list.html", {'cars': cars})
 
 
-def car_detail(request, list_id):
-    
+def car_detail(request, spec_id):
     try:
-        list = Spec.objects.get(pk=list_id)
+        car = Spec.objects.get(pk=spec_id)
     except Spec.DoesNotExist:
-        raise Http404("Car does not exist")
-    return render(request, 'car/car_detail.html', {'list': list})
+        raise Http404("Car doesnt exist")
+    return render(request, "car/car_detail.html", {'car': car})
 
 
 def cars(request, car_list):
