@@ -1,13 +1,12 @@
-{% extends 'car/base.html' %}
+{% extends 'base.html' %}
 {% block content %}
     {% if list %}
         <ul>
-            <li><a href="/car/{{ spec.id }}">Car</a></li>
-            <li><a href="">MotorCycle</a></li>
-            <li><a href="">Vehicle</a></li>
+            {% for list in list%}
+            <li><a href="/car/{{ spec.id }}">{{ list.name }}</a></li>
+            {% endfor %}
         </ul>
     {% else %}
             <p>No cars as of now</p>
     {% endif %}
-
 {% endblock %}

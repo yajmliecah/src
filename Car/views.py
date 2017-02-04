@@ -11,9 +11,19 @@ def index(request):
     return render(request, "car/index.html", {'list': list})
 
     
-def car_list(request):
-    cars = Spec.objects.all()
-    return render(request, "car/car_list.html", {'cars': cars})
+def cars(request):
+    cars = Spec.objects.filter(category='CAR')
+    return render(request, "car/cars.html", {'cars': cars})
+
+
+def motorcycles(request):
+    motorcycles = Spec.objects.filter(category='MOTORCYCLE')
+    return render(request, "motorcycles/motorcycles.html", {'motorcycles': motorcycles})
+
+
+def vehicles(request):
+    vehicles = Spec.objects.filter(category='VEHICLE')
+    return render(request, "vehicles/vehicles.html", {'vehicles': vehicles})
 
 
 def car_detail(request, spec_id):
@@ -21,14 +31,4 @@ def car_detail(request, spec_id):
         car = Spec.objects.get(pk=spec_id)
     except Spec.DoesNotExist:
         raise Http404("Car doesnt exist")
-    return render(request, "car/car_detail.html", {'car': car})
-
-
-def cars(request, car_list):
-    car = Spec.objects.filter(category='CAR')
-    return render(request, "car/cars.html", {'car': car})
-
-
-def motorcycles(request, motor_list):
-    motor_list = Spec.objects.filter(category='MOTORCYCLES')
-    return render(request, "car/motorcycles.html", {'motorcycles': motorcycles})
+    return render(request, "car/car_list.html", {'car': car})

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   {% if vehicles %}
+    <ul>
+        {% for vehicles in vehicles %}
+            <li>{{ vehicles.name }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>No Vehicles yet</p>
+    {% endif %}
+{% endblock %}
