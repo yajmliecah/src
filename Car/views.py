@@ -3,7 +3,9 @@ from django.http import Http404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.core.urlresolvers import reverse
+
 from .models import Spec
+from Car.forms import SpecForm
 
 
 def index(request):
@@ -14,6 +16,14 @@ def index(request):
 def cars(request):
     cars = Spec.objects.filter(category='CAR')
     return render(request, "car/cars.html", {'cars': cars})
+
+
+def car_detail(request, spec_id):
+    try:
+        car = Spec.objects.get(pk=spec_id)
+    except Spec.DoesNotExist:
+        raise Http404("Car doesnt exist")
+    return render(request, "car/car_list.html", {'car': car})
 
 
 def motorcycles(request):
@@ -32,3 +42,21 @@ def car_detail(request, spec_id):
     except Spec.DoesNotExist:
         raise Http404("Car doesnt exist")
     return render(request, "car/car_list.html", {'car': car})
+
+
+def spec_form(request, id=None):
+    if request.method == "POST":
+        spec_form =forms.SpecForm(request.POST)
+        if spec_form.is_valid():
+            spec = spec_form.save()
+        return HttpResponseRedirect(reverse('car:all'))
+    
+    else:
+        if id:
+            spec =get_object_or_404(Spec, id=id)
+            spec_form = forms.SpecForm(instance=spec)
+        
+        else:
+            add_ons =forms.SpecForm()
+    
+    return render(request, "spec_form.html", {'spec_form': spec_form})
