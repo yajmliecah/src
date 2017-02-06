@@ -6,6 +6,7 @@ from datetime import datetime
 
 class Brand(models.Model):
     name = models.CharField(max_length=50, verbose_name=_("name"), unique=True)
+    slug = models.SlugField(unique=True, null=True)
     logo = models.ImageField(verbose_name=_("Logo"), null=True, blank=True)
     description = models.TextField(verbose_name=_("Description"), default='')
         

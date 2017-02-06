@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.core.urlresolvers import reverse
 
-from .models import Spec
+from .models import Spec, Brand
 from Car.forms import SpecForm
 
 
@@ -46,7 +46,7 @@ def car_detail(request, spec_id):
 
 def spec_form(request, id=None):
     if request.method == "POST":
-        spec_form =forms.SpecForm(request.POST)
+        spec_form = SpecForm(request.POST)
         if spec_form.is_valid():
             spec = spec_form.save()
         return HttpResponseRedirect(reverse('car:all'))
@@ -54,9 +54,9 @@ def spec_form(request, id=None):
     else:
         if id:
             spec =get_object_or_404(Spec, id=id)
-            spec_form = forms.SpecForm(instance=spec)
+            spec_form = SpecForm(instance=spec)
         
         else:
-            add_ons =forms.SpecForm()
+            spec_form = SpecForm()
     
     return render(request, "spec_form.html", {'spec_form': spec_form})

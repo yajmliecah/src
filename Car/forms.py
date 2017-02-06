@@ -12,13 +12,13 @@ class BrandForm(forms.ModelForm):
 class SpecForm(forms.ModelForm):
     name = forms.CharField(max_length=100)
     brand = forms.ModelMultipleChoiceField(queryset=Brand.objects.all())
-    category = forms.CharField(max_length=100, widget=forms.Select(choices=CATEGORY))
+    category = forms.CharField(max_length=100, widget=forms.Select(choices=Spec.CATEGORY))
     price = forms.DecimalField(max_digits=9)
     details = forms.CharField(widget=forms.Textarea)
     locations = forms.CharField(max_length=100)
-    transmission = forms.CharField(max_length=100, widget=forms.Select(choices=TRANS),)
+    transmission = forms.CharField(max_length=100, widget=forms.Select(choices=Spec.TRANS),)
     fuel = forms.CharField(max_length=100)
     
     class Meta:
         model = Spec
-        fields = ['__all__']
+        exclude = ('fuel',)
