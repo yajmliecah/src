@@ -48,7 +48,7 @@ class Spec(models.Model):
     condition = models.CharField(max_length=100, choices=CONDITION)
     category = models.CharField(max_length=50, choices=CATEGORY, verbose_name=_("category"))
     price = models.DecimalField(max_digits=9, decimal_places=2)
-    details = models.TextField(blank=True, verbose_name=_("details"), help_text=_("Enter car details"))
+    details = models.TextField(blank=True, verbose_name=_("details"))
     location = models.CharField(max_length=100, verbose_name=_("locations"))
     transmission = models.CharField(max_length=100, choices=TRANS, verbose_name=_("transmission"))
     fuel = models.CharField(max_length=100, choices=FUEL)

@@ -2,7 +2,7 @@
 {% block content %}
     <ul>
         {% for cars in cars %}
-            <li>{{ cars.name }}</li>
+            <li><a href="/{{ spec_id }}">{{ cars.name }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}

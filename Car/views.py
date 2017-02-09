@@ -1,11 +1,9 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import Http404
-from django.http import HttpResponse, HttpResponseRedirect
-from django.template import loader
-from django.core.urlresolvers import reverse
+from django.http import Http404, HttpResponseRedirect, HttpResponse
+from django.template import Context, loader
+from django.shortcuts import render, redirect, render_to_response
 
-from .models import Spec, Brand
-from Car.forms import SpecForm
+from .forms import SpecForm
+from .models import Spec
 
 
 def index(request):
@@ -20,10 +18,11 @@ def cars(request):
 
 def car_detail(request, spec_id):
     try:
-        car = Spec.objects.get(pk=spec_id)
+        cars = Spec.objects.get(pk=spec_id)
     except Spec.DoesNotExist:
-        raise Http404("Car doesnt exist")
-    return render(request, "car/car_list.html", {'car': car})
+        raise Http404
+    
+    return render_to_response('car/car_detail.html', {'cars': cars} )
 
 
 def motorcycles(request):
@@ -36,27 +35,16 @@ def vehicles(request):
     return render(request, "vehicles/vehicles.html", {'vehicles': vehicles})
 
 
-def car_detail(request, spec_id):
-    try:
-        car = Spec.objects.get(pk=spec_id)
-    except Spec.DoesNotExist:
-        raise Http404("Car doesnt exist")
-    return render(request, "car/car_list.html", {'car': car})
-
-
-def spec_form(request, id=None):
-    if request.method == "POST":
-        spec_form = SpecForm(request.POST)
-        if spec_form.is_valid():
-            spec = spec_form.save()
-        return HttpResponseRedirect(reverse('car:all'))
-    
-    else:
-        if id:
-            spec =get_object_or_404(Spec, id=id)
-            spec_form = SpecForm(instance=spec)
+def spec_form(request, pk):
+    if request.method == 'POST':
+        form = SpecForm(request.POST)
         
-        else:
-            spec_form = SpecForm()
+        if form.is_valid():
+            spec = form.save(commit=False)
+            spec.save()
+            return redirect('car_detail', pk=spec.pk)
+        
+    else:
+        form = SpecForm()
     
-    return render(request, "spec_form.html", {'spec_form': spec_form})
+    return render(request, 'spec_form.html', {'form': form})

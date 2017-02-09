@@ -1,10 +1,6 @@
-<h1>Cars</h1>
-{% block content %}
-<h2>{{ car.name }}</h2>
-    <ul>
-    {% for car in car %}
-        <li>{{ car.name }}</li>
+{% extends 'base.html' %}
 
-    </ul>
-    {% endfor %}
+{% block content %}
+    <p>{{ cars.name }}</p>
+    <p>{{ cars.details }}</p>
 {% endblock %}
