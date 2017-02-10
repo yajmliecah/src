@@ -17,7 +17,12 @@ def cars(request):
 
 
 def car_detail(request, spec_id):
-    cars = Spec.object.get(Spec, pk=spec_id)
+    
+    try:
+        cars = Spec.objects.get(pk=spec_id)
+    except Spec.DoesNotExist:
+        pass
+    
     return render(request, 'car/car_detail.html', {'cars': cars})
     
 

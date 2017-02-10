@@ -3,8 +3,8 @@
 {% block h1 %}
     <h1>Add Car</h1>
 {% endblock h1%}
-
-{% block content %}
+    {% block content %}
+    <center>
     <form id="spec_form" action="/add/" method="POST">
             {% csrf_token %}
             <table>
@@ -21,4 +21,5 @@
             </table>
         <input type="submit" value="submit">
     </form>
+    </center>
 {% endblock %}
