@@ -3,7 +3,7 @@
     {% if list %}
         <ul>
             {% for list in list%}
-            <li><a href="/car/{{ spec.id }}">{{ list.name }}</a></li>
+            <li><a href="{{ spec.id }}">{{ list.name }}</a></li>
             {% endfor %}
         </ul>
     {% else %}

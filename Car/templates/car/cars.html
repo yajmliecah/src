@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
+    {% if cars %}
     <ul>
         {% for cars in cars %}
-            <li><a href="/{{ spec_id }}">{{ cars.name }}</a></li>
+            <li><a href="/car{{ car.name }}/">{{ cars.name }}</a></li>
         {% endfor %}
     </ul>
+    {% else %}
+        <p>No Cars Available</p>
+    {% endif %}
 {% endblock %}

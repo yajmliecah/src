@@ -6,8 +6,9 @@ class BrandForm(forms.ModelForm):
     
     class Meta:
         model =Brand
-        fields = ['name']
-
+        fields = ('name', 'logo', 'description')
+        exclude = ('slug', )
+    
 
 class SpecForm(forms.ModelForm):
    

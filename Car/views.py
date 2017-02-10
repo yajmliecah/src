@@ -1,6 +1,6 @@
 from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.template import Context, loader
-from django.shortcuts import render, redirect, render_to_response
+from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import SpecForm
 from .models import Spec
@@ -17,13 +17,9 @@ def cars(request):
 
 
 def car_detail(request, spec_id):
-    try:
-        cars = Spec.objects.get(pk=spec_id)
-    except Spec.DoesNotExist:
-        raise Http404
+    cars = Spec.object.get(Spec, pk=spec_id)
+    return render(request, 'car/car_detail.html', {'cars': cars})
     
-    return render_to_response('car/car_detail.html', {'cars': cars} )
-
 
 def motorcycles(request):
     motorcycles = Spec.objects.filter(category='MOTORCYCLE')
@@ -35,15 +31,16 @@ def vehicles(request):
     return render(request, "vehicles/vehicles.html", {'vehicles': vehicles})
 
 
-def spec_form(request, pk):
+def spec_form(request):
     if request.method == 'POST':
         form = SpecForm(request.POST)
         
         if form.is_valid():
-            spec = form.save(commit=False)
-            spec.save()
-            return redirect('car_detail', pk=spec.pk)
+            form.save(commit=True)
+            return index(request)
         
+        else:
+            print form.errors
     else:
         form = SpecForm()
     

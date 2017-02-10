@@ -4,7 +4,8 @@ from Car.models import Brand, Spec
 
 
 class BrandAdmin(admin.ModelAdmin):
-    fields = ('name',)
+    fields = ('name', 'slug', 'logo', 'description')
+    prepopulated_fields = {'slug': ('name',)}
 
 
 class SpecAdmin(admin.ModelAdmin):
