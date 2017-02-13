@@ -18,6 +18,7 @@ class SpecForm(forms.ModelForm):
                   'details', 'location', 'transmission', 'fuel', 'lifestyle',
                   'seller_type', 'mileage', 'color_family',)
         exclude = ('slug', )
+
         
         widgets = {
             'name': forms.TextInput(attrs=({'placeholder': 'Name', 'class': 'mandatory'})),

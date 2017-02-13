@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.template.defaultfilters import slugify
+from django.core.urlresolvers import reverse
 from django.utils.timezone import utc
 from datetime import datetime
 
@@ -63,6 +65,19 @@ class Spec(models.Model):
         
     def __unicode__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            super(Spec, self).save(*args, **kwargs)
+        else:
+            self.update_date = datetime.now()
+        if not self.slug:
+            slug_str = "%s %s" % (self.pk, self.title.lower())
+            self.slug = slugify(slug_str)
+        super(Spec, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('car_detail', args=[str(self.id)])
         
 #    def was_built(self):
 #       return self.build.date() == datetime.date.today()

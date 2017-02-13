@@ -3,7 +3,7 @@
     {% if cars %}
     <ul>
         {% for cars in cars %}
-            <li><a href="/car{{ car.name }}/">{{ cars.name }}</a></li>
+           <li><a href="{% url 'car_detail' car.slug %}">{{ car.name }}</a></li>
         {% endfor %}
     </ul>
     {% else %}
