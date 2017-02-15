@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
     {% if cars %}
-    <ul>
+    <ul>}
         {% for cars in cars %}
-           <li><a href="{% url 'car_detail' car.slug %}">{{ car.name }}</a></li>
+           <li><a href="car/{{ cars.slug }}">{{ cars.name }}</a></li>
         {% endfor %}
     </ul>
     {% else %}

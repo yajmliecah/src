@@ -14,5 +14,5 @@ def cars(request):
 
 
 def car(request, slug):
-    car = get_object_or_404(Spec, slug=slug)
-    return render(request, 'car/car_detail.html', {"car": car })
+    cars = get_object_or_404(Spec, slug=slug)
+    return render(request, 'car/car_detail.html', {"cars": cars })
