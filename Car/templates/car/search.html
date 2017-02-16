@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+<div class="jumbotron">
+    {% block content %}
+        <ul>
+            {% for list in list %}
+                <li><a href=""></a>{{ list.name }} </li>
+            {% endfor %}
+        </ul>
+    {% endblock %}
+</div>

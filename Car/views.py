@@ -1,11 +1,9 @@
-from django.http import Http404, HttpResponseRedirect, HttpResponse
-from django.template import Context, loader
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, get_object_or_404
+from django.db.models import Q
 
 from .forms import SpecForm, SearchForm
 from .models import Spec, Brand
 
-from django.views.generic import ListView, DetailView, FormView
 
 def index(request):
     list = Spec.objects.all()
@@ -43,9 +41,10 @@ def vehicle_detail(request, slug):
 
 
 def search(request):
-    q = request.GET.get("q")
-    if q:
-        results = Spec.objects.filter(name__icontains=q)
-    else:
-        results = Spec.objects.all()
-    return render(request, 'car/search.html', {"results": results, "q": q })
+    query = request.GET.get('q')
+    if query is not None and query != '' and request.is_ajax():
+        list = Spec.objects.filter(Q(name__icontains=query))
+        
+        return render(request, 'car/search.html', {"list": list})
+    
+    return render(request, 'car/search.html')
