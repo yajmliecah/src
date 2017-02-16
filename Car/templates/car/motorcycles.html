@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="jumbotron">
+    {% if motorcycles %}
+    <ul>
+        {% for motorcycles in motorcycles %}
+           <li><a href="motorcycle/{{ motorcycle.slug }}">{{ motorcycles.name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>No Motorcycles Available</p>
+    {% endif %}
+
+{% endblock %}
+</div>

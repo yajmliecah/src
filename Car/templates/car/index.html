@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="jumbotron">
     {% if list %}
         <ul>
             {% for list in list%}
@@ -10,3 +11,5 @@
             <p>No cars as of now</p>
     {% endif %}
 {% endblock %}
+
+</div>

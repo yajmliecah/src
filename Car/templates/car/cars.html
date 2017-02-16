@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
     {% if cars %}
-    <ul>}
+<div class="jumbotron">
+
+    <ul>
         {% for cars in cars %}
-           <li><a href="car/{{ cars.slug }}">{{ cars.name }}</a></li>
+           <li><a href="{{ cars.slug }}">{{ cars.name }}</a></li>
         {% endfor %}
     </ul>
     {% else %}
         <p>No Cars Available</p>
     {% endif %}
+
 {% endblock %}
+</div>

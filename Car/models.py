@@ -64,7 +64,7 @@ class Spec(models.Model):
         verbose_name_plural = _("Specs")
         
     def __unicode__(self):
-        return self.id
+        return self.name
 
     def save(self, *args, **kwargs):
         if not self.pk:
