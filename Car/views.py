@@ -2,7 +2,7 @@ from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.template import Context, loader
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .forms import SpecForm
+from .forms import SpecForm, SearchForm
 from .models import Spec, Brand
 
 from django.views.generic import ListView, DetailView, FormView
@@ -43,4 +43,9 @@ def vehicle_detail(request, slug):
 
 
 def search(request):
-    return render()
+    q = request.GET.get("q")
+    if q:
+        results = Spec.objects.filter(name__icontains=q)
+    else:
+        results = Spec.objects.all()
+    return render(request, 'car/search.html', {"results": results, "q": q })

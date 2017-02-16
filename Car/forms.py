@@ -38,3 +38,7 @@ class SpecForm(forms.ModelForm):
 
         def __init__(self, *args, **kwargs):
             super(SpecForm, self).__init__(*args, **kwargs)
+            
+            
+class SearchForm(forms.ModelForm):
+    search_query = forms.CharField(max_length=100)
