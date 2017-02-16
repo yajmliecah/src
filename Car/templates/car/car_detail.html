@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <p>{{ cars.name }}</p>
-    <p>{{ cars.details }}</p>
-    <p>{{ cars.category }}</p>
+<div class="jumbotron">
+    <h1>{{ car.name }}</h1>
+    <p>{{ car.details }}</p>
+    <p>{{ car.category }}</p>
+    <p>{{ car.price }}</p>
+</div>
 {% endblock %}

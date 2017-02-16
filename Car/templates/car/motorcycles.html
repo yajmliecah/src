@@ -4,7 +4,7 @@
     {% if motorcycles %}
     <ul>
         {% for motorcycles in motorcycles %}
-           <li><a href="motorcycle/{{ motorcycle.slug }}">{{ motorcycles.name }}</a></li>
+           <li><a href="/motorcycle/{{ motorcycles.slug }}">{{ motorcycles.name }}</a></li>
         {% endfor %}
     </ul>
     {% else %}

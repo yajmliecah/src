@@ -18,12 +18,12 @@ def cars(request):
 
 
 def motorcyles(request):
-    motorcyles = Spec.objects.filter(category='MOTORCYCLES')
+    motorcyles = Spec.objects.filter(category='MOTORCYCLE')
     return render(request, 'car/motorcycles.html', {"motorcycles": motorcyles })
 
 
 def vehicles(request):
-    vehicles = Spec.objects.filter(category='VEHICLES')
+    vehicles = Spec.objects.filter(category='VEHICLE')
     return render(request, 'car/vehicles.html', {"vehicles": vehicles })
 
 
@@ -34,9 +34,13 @@ def car_detail(request, slug):
 
 def motorcycle_detail(request, slug):
     motorcyle = get_object_or_404(Spec, slug=slug)
-    return render(request, 'car/car_detail.html', {"motorcycle": motorcyle})
+    return render(request, 'car/motorcycle_detail.html', {"motorcycle": motorcyle})
 
 
 def vehicle_detail(request, slug):
     vehicle = get_object_or_404(Spec, slug=slug)
-    return render(request, 'car/car_detail.html', {"vehicle": vehicle })
+    return render(request, 'car/vehicle_detail.html', {"vehicle": vehicle })
+
+
+def search(request):
+    return render()

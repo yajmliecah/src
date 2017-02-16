@@ -2,10 +2,9 @@
 {% block content %}
     {% if cars %}
 <div class="jumbotron">
-
     <ul>
         {% for cars in cars %}
-           <li><a href="{{ cars.slug }}">{{ cars.name }}</a></li>
+           <li><a href="/car/{{ cars.slug }}">{{ cars.name }}</a></li>
         {% endfor %}
     </ul>
     {% else %}

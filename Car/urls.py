@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^car/(?P<slug>[-\w]+)/$', views.car_detail, name='cars'),
     url(r'^motorcycle/(?P<slug>[-\w]+)/$', views.motorcycle_detail, name='motorcycles'),
     url(r'^vehicle/(?P<slug>[-\w]+)/$', views.vehicle_detail, name='vehicles'),
+    url('^search/', views.search, name='search'),
     ]
