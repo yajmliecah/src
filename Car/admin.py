@@ -9,6 +9,9 @@ class BrandAdmin(admin.ModelAdmin):
 
 
 class SpecAdmin(admin.ModelAdmin):
+    list_display = ('name', 'brand', 'category', 'price',)
+    list_filter = ('name',)
+    search_fields = ('name', 'brand', 'category',)
     prepopulated_fields = {'slug': ('name',)}
 
 admin.site.register(Brand, BrandAdmin)

@@ -12,8 +12,8 @@ class Brand(models.Model):
     logo = models.ImageField(verbose_name=_("Logo"), null=True, blank=True)
     description = models.TextField(verbose_name=_("Description"), default='')
         
-    def __str__(self):
-        return _("Brand %s") % self.name
+    def __unicode__(self):
+        return self.name
         
              
 class Spec(models.Model):
