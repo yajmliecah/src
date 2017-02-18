@@ -10,6 +10,11 @@ def index(request):
     return render(request, 'car/index.html', {"list": list })
 
 
+def list_details(request, slug):
+    list = get_object_or_404(Spec, slug=slug)
+    return render(request, 'car/list_detail.html', {"list": list })
+
+
 def cars(request):
     cars = Spec.objects.filter(category='CAR')
     return render(request, 'car/cars.html', {"cars": cars })

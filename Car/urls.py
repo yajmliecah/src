@@ -6,6 +6,7 @@ app_name = 'Car'
 urlpatterns = [
     
     url(r'^$', views.index, name='index'),
+    url(r'^(?P<slug>[-\w]+)/$', views.list_details, name='list'),
     url(r'^cars/$', views.cars, name='cars'),
     url(r'^motorcycles/$', views.motorcyles, name='motorcycles'),
     url(r'^vehicles/$', views.vehicles, name='vehicles'),
