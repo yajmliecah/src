@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron">
+    <div class="container">
+  <h2>Add Here</h2>
+  <form action="" method="POST">{% csrf_token %}
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Name</label>
+      <div class="col-sm-10">
+        {{ form.name }}
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Brand</label>
+      <div class="col-sm-10">
+        {{ form.brand }}
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Condition</label>
+      <div class="col-sm-10">
+       {{ form.condition }}
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Category</label>
+      <div class="col-sm-10">
+        {{ form.category }}
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Price</label>
+      <div class="col-sm-10">
+        {{ form.price }}
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Details</label>
+      <div class="col-sm-10">
+       {{ form.details }}
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Locations</label>
+      <div class="col-sm-10">
+        {{ form.location }}
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Transmision</label>
+      <div class="col-sm-10">
+        {{ form.transmission }}
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Fuel</label>
+      <div class="col-sm-10">
+        {{ form.fuel }}
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Lifestyle</label>
+      <div class="col-sm-10">
+        {{ form.lifestyle }}
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Seller Type</label>
+      <div class="col-sm-10">
+        {{ form.seller_type }}
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Mileage</label>
+      <div class="col-sm-10">
+        {{ form.mileage }}
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Color Family</label>
+      <div class="col-sm-10">
+        {{ form.color_family }}
+      </div>
+    </div>
+
+
+
+    <div class="form-group row">
+      <div class="offset-sm-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+</div>
+
+{% endblock %}

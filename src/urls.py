@@ -6,6 +6,6 @@ from django.conf import settings
 
 
 urlpatterns = [
-    url(r'^', include('Car.urls', namespace='Car')),
     url(r'^admin/', admin.site.urls),
+    url(r'^', include('Car.urls', namespace='Car')),
     ]

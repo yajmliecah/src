@@ -54,22 +54,25 @@ def search(request):
     
     return render(request, 'car/search.html')
 
-"""""
+
 def add_form(request):
     
     if request.method == 'POST':
-        form = SpecForm(request.POST)
-         
-            if form.is_valid():
-                form.save(commit=True)
+        form =SpecForm(request.POST)
+        
+        if form.is_valid():
+            form.save(commit=False)
             
             return index(request)
-            else:
-                print form.errors
-    
         else:
-        form = SpecForm()
+            print form.errors
             
-             
-    return render(request, 'spec_form.html')
-"""
+    else:
+        form = SpecForm()
+    
+    return render(request, 'car/add_form.html', {"form": form})
+    
+            
+            
+            
+        

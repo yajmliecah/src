@@ -35,9 +35,10 @@ class SpecForm(forms.ModelForm):
             'mileage': forms.TextInput(attrs=({'placeholder': 'Mileage', 'class': 'mandatory'})),
             'color_family': forms.TextInput(attrs=({'placeholder': 'Color', 'class': 'mandatory'})),
         }
-
+    
         def __init__(self, *args, **kwargs):
             super(SpecForm, self).__init__(*args, **kwargs)
+
             
             
 class SearchForm(forms.ModelForm):
