@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
+from django.http import HttpResponseRedirect
 
 from .forms import SpecForm, SearchForm
 from .models import Spec, Brand
@@ -56,19 +57,12 @@ def search(request):
 
 
 def add_form(request):
+    form = SpecForm(request.POST or None)
     
-    if request.method == 'POST':
-        form =SpecForm(request.POST)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return HttpResponseRedirect('/')
         
-        if form.is_valid():
-            form.save(commit=False)
-            
-            return index(request)
-        else:
-            print form.errors
-            
-    else:
-        form = SpecForm()
     
     return render(request, 'car/add_form.html', {"form": form})
     
