@@ -22,16 +22,16 @@ class SpecForm(forms.ModelForm):
         
         widgets = {
             'name': forms.TextInput(attrs=({'placeholder': 'Name', 'class': 'mandatory'})),
-            'brand': forms.TextInput(attrs=({'placeholder': 'Brand', 'class': 'mandatory'})),
+            'brand': forms.Select(attrs=({'placeholder': 'Brand', 'class': 'mandatory'})),
             'condition':forms.Select(attrs=({'placeholder': 'Condition', 'class': 'mandatory'})),
             'category': forms.Select(attrs=({'placeholder': 'Category', 'class': 'mandatory'})),
             'price': forms.TextInput(attrs=({'placeholder': 'Price', 'class': 'mandatory'})),
             'details': forms.Textarea(attrs=({'placeholder': 'Details', 'class': 'mandatory'})),
             'locations': forms.TextInput(attrs=({'placeholder': 'Locations', 'class': 'mandatory'})),
-            'transmission': forms.TextInput(attrs=({'placeholder': 'Transmission', 'class': 'mandatory'})),
-            'fuel': forms.TextInput(attrs=({'placeholder': 'Fuel', 'class': 'mandatory'})),
-            'lifestyle': forms.TextInput(attrs=({'placeholder': 'LifeStyle', 'class': 'mandatory'})),
-            'seller_type': forms.TextInput(attrs=({'placeholder': 'Seller Type', 'class': 'mandatory'})),
+            'transmission': forms.Select(attrs=({'placeholder': 'Transmission', 'class': 'mandatory'})),
+            'fuel': forms.Select(attrs=({'placeholder': 'Fuel', 'class': 'mandatory'})),
+            'lifestyle': forms.Select(attrs=({'placeholder': 'LifeStyle', 'class': 'mandatory'})),
+            'seller_type': forms.Select(attrs=({'placeholder': 'Seller Type', 'class': 'mandatory'})),
             'mileage': forms.TextInput(attrs=({'placeholder': 'Mileage', 'class': 'mandatory'})),
             'color_family': forms.TextInput(attrs=({'placeholder': 'Color', 'class': 'mandatory'})),
         }

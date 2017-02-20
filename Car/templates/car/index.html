@@ -2,11 +2,35 @@
 {% block content %}
 <div class="jumbotron">
     {% if list %}
-        <ul>
-            {% for list in list%}
-            <li><a href="{{ list.slug }}">{{ list.name }}</a></li>
+        <table class="table table-hover">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Name</th>
+                <th>Brand</th>
+                <th>Category</th>
+                <th>Condition</th>
+                <th>Price</th>
+                <th>Transmission</th>
+                <th>Seller</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for list in list %}
+
+            <tr>
+                <td><a href="{{ list.slug }}">{{ list.name }}</a></td>
+                <td>{{ list.brand }}</td>
+                <td>{{ list.category }}</td>
+                <td>{{ list.condition }}</td>
+                <td>{{ list.price }}</td>
+                <td>{{ list.transmission }}</td>
+                <td>{{ list.seller_type }}</td>
+             </tr>
+
             {% endfor %}
-        </ul>
+        </tbody>
+    </table>
     {% else %}
             <p>No cars as of now</p>
     {% endif %}

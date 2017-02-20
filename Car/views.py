@@ -57,15 +57,21 @@ def search(request):
 
 
 def add_form(request):
-    form = SpecForm(request.POST or None)
     
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-        return HttpResponseRedirect('/')
+    if request.method == 'POST':
+        form = SpecForm(request.POST)
+        
+        if form.is_valid():
+            form.save(commit=True)
+            
+            return HttpResponseRedirect('/')
         
     
-    return render(request, 'car/add_form.html', {"form": form})
+    else:
+        form = SpecForm()
     
+    return render(request, 'car/add_form.html', {"form": form})
+            
             
             
             
