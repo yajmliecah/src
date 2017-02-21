@@ -1,6 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 
 from .forms import SpecForm, SearchForm
 from .models import Spec, Brand
@@ -47,13 +47,13 @@ def vehicle_detail(request, slug):
 
 
 def search(request):
-    query = request.GET.get('q')
-    if query is not None and query != '' and request.is_ajax():
-        list = Spec.objects.filter(Q(name__icontains=query))
-        
-        return render(request, 'car/search.html', {"list": list})
-    
-    return render(request, 'car/search.html')
+    if 'q' in request.GET and request.GET['q']:
+        q = request.GET['q']
+        spec = Spec.objects.filter(name__icontains=q)
+        return render(request, 'results.html',
+                      {'spec': spec, 'query': q})
+    else:
+        return HttpResponse('Please submit a search term.')
 
 
 def add_form(request):
@@ -71,6 +71,35 @@ def add_form(request):
         form = SpecForm()
     
     return render(request, 'car/add_form.html', {"form": form})
+
+
+def edit_form(request, pk):
+    list = get_object_or_404(Spec, pk)
+    if request.POST:
+        form = SpecForm(request.POST, instance=list)
+    
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('index')
+    else:
+        form = SpecForm()
+    
+    return render(request, 'car/edit_form.html', {"form": form })
+            
+        
+def delete(request, pk):
+    list = get_object_or_404(Spec, pk=pk)
+    
+    if request.method == 'POST':
+        list.delete()
+        
+        return HttpResponseRedirect('/')
+    
+    return render(request, 'car/delete.html', {"list": list})
+    
+            
+    
+    
             
             
             

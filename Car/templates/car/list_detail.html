@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="jumbotron">
-    <p><a href="">Edit</a></p>
+    <p><a href="/edit/{{ list.pk }}">Edit</a>| <a href="/delete/{{ list.pk }}">Delete</a> </p>
     <h2>{{ list.name }}</h2>
     <p>{{ list.price }}</p>
     <p>{{ list.details }}</p>
